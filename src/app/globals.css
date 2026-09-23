@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand: #63c800;
+    --brand-deep: #2f7d00;
+    --accent: #e51b16;
+    --ink: #101510;
+    --canvas: #f6f8f3;
+    --nav-h: 80px;
+  }
+
+  * {
+    @apply border-black/5;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-h) + 16px);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white text-ink font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: rgba(99, 200, 0, 0.25);
+    color: var(--ink);
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display text-balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--brand-deep);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply inline-flex items-center gap-2.5 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-brand-700;
+  }
+
+  .eyebrow::before {
+    content: '';
+    @apply h-px w-8 bg-gradient-to-r from-accent-500 to-brand-500;
+  }
+
+  .eyebrow-light {
+    @apply text-brand-200;
+  }
+
+  .lead {
+    @apply text-lg leading-relaxed text-ink-muted sm:text-xl;
+  }
+
+  .card-surface {
+    @apply rounded-3xl border border-black/[0.06] bg-white shadow-soft transition-all duration-500 ease-premium;
+  }
+
+  .card-surface:hover {
+    @apply -translate-y-1.5 border-brand-200 shadow-lift;
+  }
+
+  .nav-link {
+    @apply relative py-1 text-sm font-medium transition-colors duration-300;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute -bottom-0.5 left-0 h-[2px] w-0 rounded-full bg-accent-500 transition-all duration-500 ease-premium;
+  }
+
+  .nav-link:hover::after,
+  .nav-link[data-active='true']::after {
+    @apply w-full;
+  }
+
+  .hairline {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-black/10 to-transparent;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+
+  .reveal {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+    transition:
+      opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal[data-visible='true'] {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; }
+  }
+
+  /* Fingerprint-inspired ridge field, derived from the GenTouch mark */
+  .ridges {
+    background-image: repeating-radial-gradient(
+      circle at var(--rx, 50%) var(--ry, 50%),
+      rgba(16, 21, 16, 0.055) 0px,
+      rgba(16, 21, 16, 0.055) 1.5px,
+      transparent 1.5px,
+      transparent 15px
+    );
+  }
+
+  .ridges-brand {
+    background-image: repeating-radial-gradient(
+      circle at var(--rx, 50%) var(--ry, 50%),
+      rgba(99, 200, 0, 0.16) 0px,
+      rgba(99, 200, 0, 0.16) 1.5px,
+      transparent 1.5px,
+      transparent 15px
+    );
+  }
+
+  .ridges-light {
+    background-image: repeating-radial-gradient(
+      circle at var(--rx, 50%) var(--ry, 50%),
+      rgba(255, 255, 255, 0.09) 0px,
+      rgba(255, 255, 255, 0.09) 1.5px,
+      transparent 1.5px,
+      transparent 16px
+    );
+  }
+
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+  }
+
+  .mask-radial {
+    -webkit-mask-image: radial-gradient(circle at center, black 35%, transparent 72%);
+    mask-image: radial-gradient(circle at center, black 35%, transparent 72%);
+  }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}

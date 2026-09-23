@@ -1,0 +1,13 @@
+{
+  "name": "GenTouch",
+  "short_name": "GenTouch",
+  "description": "A place to belong. A faith to grow.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F6F8F3",
+  "theme_color": "#2F7D00",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/brand/gentouch-logo.png", "sizes": "720x720", "type": "image/png" }
+  ]
+}
