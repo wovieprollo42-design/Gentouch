@@ -8,7 +8,9 @@
 export const site = {
   name: 'GenTouch',
   tagline: "There's a Nation Inside of You!",
-  url: 'https://gentouch.org',
+  /** Live site. Change this when a custom domain is connected — canonicals,
+   * Open Graph URLs and the sitemap are all derived from it. */
+  url: 'https://gentouch-church.vercel.app',
   description:
     'GenTouch is a welcoming church family where you can encounter God, discover your purpose, build meaningful relationships, and grow in faith together.',
   logo: '/brand/gentouch-logo.png',
